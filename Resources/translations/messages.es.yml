@@ -10,4 +10,5 @@ Is delayed?: Con retardo?
 Send date: Fecha límite de envío
 Recipients: Destinatarios
 Mailing to %count% recipients has been enqueued for sending: Se han colocado %count% destinatarios para el envío en la cola de correo.
-No contacs selected, it need to be at least one contact to send mailing: No se seleccionaron contactos. Se requiere al menos uno para poder realizar el envío de correo.
+No contacs selected, it need to be at least one contact to send mailing: >
+  No se seleccionaron contactos. Se requiere al menos uno para poder realizar el envío de correo.
