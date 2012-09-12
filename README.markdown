@@ -15,7 +15,7 @@ Features included:
 - Scalable-ready - you can put beanstalkd queue and worker which sends mails
  away from your main application webserver
 
- This bundle depends on [WowoQueueBundle](git://github.com/wowo/WowoQueueBundle.git), which is abstraction layer for beanstalkd messaging system
+ This bundle depends on [WowoQueueBundle](https://github.com/wowo/WowoQueueBundle.git), which is abstraction layer for beanstalkd messaging system
 
 ## Installation
 
