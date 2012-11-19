@@ -40,16 +40,16 @@ class PlaceholdersTest extends \PHPUnit_Framework_TestCase
         $contact->setSurname("Smith");
         return $contact;
     }
-    
+
     /**
-     *  @expectedException \BadMethodCallException 
+     *  @expectedException \BadMethodCallException
      */
     public function testFillPlaceholdersWithoutConfiguration()
     {
         $manager = new PlaceholderProcessor();
         $manager->process(new \StdClass(), "");
     }
-    
+
     /**
      *  @expectedException \InvalidArgumentException
      */
@@ -123,7 +123,7 @@ class PlaceholdersTest extends \PHPUnit_Framework_TestCase
     public function testGetPlaceholderValue()
     {
         $proxy = new ProxyBuilder('\Wowo\NewsletterBundle\Newsletter\Placeholders\PlaceholderProcessor');
-        $managerProxy= $proxy
+        $managerProxy = $proxy
             ->setMethods(array('getPlaceholderValue'))
             ->getProxy();
         $this->assertEquals('lol', $managerProxy->getPlaceholderValue(new FakeObject(), 'source'));

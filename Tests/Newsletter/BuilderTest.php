@@ -2,17 +2,28 @@
 
 namespace Wowo\NewsletterBundle\Tests\Newsletter;
 
-use lapistano\ProxyObject\ProxyObject;
 use \Wowo\NewsletterBundle\Newsletter\Builder;
 
 class BuilderTest extends \PHPUnit_Framework_TestCase
 {
     public function testConstructor()
     {
-        $MailingManager = \Mockery::mock('\Wowo\NewsletterBundle\Newsletter\Model\MailingManager');
-        $ContactManager = \Mockery::mock('\Wowo\NewsletterBundle\Newsletter\Model\ContactManager');
-        $PlaceholderProcessor = \Mockery::mock('\Wowo\NewsletterBundle\Newsletter\Placeholders\PlaceholderProcessor');
-        $MediaManager = \Mockery::mock('\Wowo\NewsletterBundle\Newsletter\Media\MediaManager');
+        $MailingManager = $this->getMockBuilder('\Wowo\NewsletterBundle\Newsletter\Model\MailingManager')
+                     ->disableOriginalConstructor()
+                     ->getMock();
+
+        $ContactManager = $this->getMockBuilder('\Wowo\NewsletterBundle\Newsletter\Model\ContactManager')
+                     ->disableOriginalConstructor()
+                     ->getMock();
+
+        $PlaceholderProcessor = $this->getMockBuilder('\Wowo\NewsletterBundle\Newsletter\Placeholders\PlaceholderProcessor')
+                     ->disableOriginalConstructor()
+                     ->getMock();
+
+        $MediaManager = $this->getMockBuilder('\Wowo\NewsletterBundle\Newsletter\Media\MediaManager')
+                     ->disableOriginalConstructor()
+                     ->getMock();
+
         $builder = new Builder($MailingManager, $ContactManager, $PlaceholderProcessor, $MediaManager);
     }
 }

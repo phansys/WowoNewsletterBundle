@@ -7,21 +7,40 @@ use Wowo\NewsletterBundle\Entity\Contact;
 class AbstractManagerBase extends \PHPUnit_Framework_TestCase
 {
     protected function getEmMock()
-    {
-        $emMock = \Mockery::mock('\Doctrine\ORM\EntityManager',
-            array(
-                'getRepository' => new FakeRepository(),
-                'getClassMetadata' => (object)array('name' => 'aClass'),
-                'persist' => null,
-                'flush' => null,
-            ));
+    {        
+        $emMock = $this->getMockBuilder('\Doctrine\ORM\EntityManager')
+                     ->disableOriginalConstructor()
+                     ->getMock();
+
+        $emMock->expects($this->any())
+                 ->method('getRepository')
+                 ->will($this->returnValue(new FakeRepository()));
+                 
+        $emMock->expects($this->any())
+                 ->method('getClassMetadata')
+                 ->will($this->returnValue((object)array('name' => 'aClass')));
+                 
+        $emMock->expects($this->any())
+                 ->method('persist')
+                 ->will($this->returnValue(null));
+                 
+        $emMock->expects($this->any())
+                 ->method('flush')
+                 ->will($this->returnValue(null));
+                 
         return $emMock;
     }
 
     protected function getContainerMock()
-    {
-        $containerMock = \Mockery::mock('\Symfony\Component\DependencyInjection\Container',
-            array('get' => null));
+    {        
+        $containerMock = $this->getMockBuilder('\Symfony\Component\DependencyInjection\Container')
+                     ->disableOriginalConstructor()
+                     ->getMock();
+                     
+        $containerMock->expects($this->any())
+                 ->method('get')
+                 ->will($this->returnValue(null));
+                 
         return $containerMock;
     }
 }

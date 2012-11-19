@@ -11,7 +11,9 @@ class TemplateManagerTest extends \PHPUnit_Framework_TestCase
 
     public function testGetters()
     {
-        $manager = new TemplateManager(\Mockery::mock('\Wowo\NewsletterBundle\Newsletter\Media\MediaManager'));
+        $manager = new TemplateManager($this->getMockBuilder('\Wowo\NewsletterBundle\Newsletter\Media\MediaManager')
+                     ->disableOriginalConstructor()
+                     ->getMock());
         $tpls = array("main" => "/tmp/main.html");
         $manager->setAvailableTemplates($tpls);
         $this->assertEquals($tpls, $manager->getAvailableTemplates());
@@ -23,7 +25,7 @@ class TemplateManagerTest extends \PHPUnit_Framework_TestCase
         file_put_contents($tpls['main'], 'NewsletterBundle');
 
         $proxy = new ProxyBuilder($this->class);
-        $managerProxy= $proxy
+        $managerProxy = $proxy
             ->setMethods(array('getActiveTemplatePath', 'getActiveTemplateBody'))
             ->disableOriginalConstructor()
             ->getProxy();
@@ -69,8 +71,9 @@ EOT;
      */
     public function testGetActiveTemplateBodyNonExistingPath()
     {
-        $proxy = new ProxyBuilder($this->class);
+        $proxy = new ProxyBuilder();
         $managerProxy= $proxy
+            ->getProxyBuilder($this->class)
             ->setMethods(array('getActiveTemplateBody'))
             ->disableOriginalConstructor()
             ->getProxy();

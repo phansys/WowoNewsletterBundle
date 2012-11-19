@@ -3,7 +3,7 @@
 namespace Wowo\NewsletterBundle\Tests\Newsletter;
 
 use Wowo\NewsletterBundle\Newsletter\Media\MediaManager;
-use lapistano\ProxyObject\ProxyObject;
+use lapistano\ProxyObject\ProxyBuilder;
 
 class MediaManagerTest extends \PHPUnit_Framework_TestCase
 {
@@ -24,7 +24,7 @@ class MediaManagerTest extends \PHPUnit_Framework_TestCase
 
     public function testGetRegex()
     {
-        $mailingMedia = new MediaManager();
+        $mailingMedia = new MediaManager();        
         $this->assertNotNull($mailingMedia->getRegex('src'));
         $this->assertNotNull($mailingMedia->getRegex('background'));
         $this->assertNotNull($mailingMedia->getRegex('background_attribute'));
